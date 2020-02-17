@@ -12,8 +12,9 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint:fix",
-      "pre-push": "npm run lint" 
+      "pre-commit": "npm run lint:fix && pretty-quick --staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
+      "pre-push": "npm run test:all"
     }
   },
   "scripts": {
@@ -22,7 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src /**/*.js",
-    "lint:fix": "eslint --fix src /**/*.js"
+    "lint:fix": "eslint --fix src /**/*.js",
+    "test:all": "set CI=true && react-scripts test && npm run lint"
   },
   "eslintConfig": {
     "extends": "react-app"
