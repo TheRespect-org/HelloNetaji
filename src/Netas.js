@@ -57,19 +57,35 @@ export default class Netas extends React.Component {
 
                             <div key={`${neta._id}-${neta.ACName}`} className='mt-3'>
                                 <div className="row">
-                                    <div className="col-md-12">
+                                    <div className="col-md-6">
                                         <div data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>
-                                            {neta.No} <small> <sup className='text-muted'>
-                                                {neta.ACName}
+                                            <small> <sup className='text-muted'>
+                                                {neta.No}
                                             </sup>
                                             </small>
 
-                                            <small className='ml-3'>{neta['Sitting MLAs']} (${neta.Party})</small>
-                                            <a href={`tel:${neta.Mobile}`}>Mobile</a>
-                                            <a href={`mailto:${neta.Email}`}>Email</a>
-                                            {neta.Twitter}
-                                            {neta.Address}
+                                            <label className='ml-3'> {neta['Sitting MLAs']} <small>({neta.Party}) from {neta.ACName}</small> </label>
                                         </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <ul>
+                                            {neta.Mobile && <li>
+                                                <a href={`tel:${neta.Mobile}`}>{neta.Mobile}</a>
+                                            </li>}
+
+                                            {neta.Email && <li>
+                                                <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
+                                            </li>}
+
+                                            {neta.Twitter && <li>
+                                                {neta.Twitter}
+                                            </li>}
+
+                                            {neta.Address && <li>
+                                                {neta.Address}
+                                            </li>}
+                                        </ul>
+
                                     </div>
                                 </div>
                                 <div className="stock-details collapse mt-3" id={`collapse${neta._id}-${neta.ACName}`}>
