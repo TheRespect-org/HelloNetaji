@@ -7,7 +7,6 @@ function App() {
     <div className="App">
       <div class="jumbotron text-center">
         <h1>Hello Netaji! NPR hi NRC hai!</h1>
-        <p>Resize this responsive page to see the effect!</p>
       </div>
 
       <div class="container">
