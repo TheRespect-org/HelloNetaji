@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Netas from './Netas';
 
 function App() {
   return (
@@ -10,19 +11,19 @@ function App() {
       </div>
 
       <div class="container">
-        <div class="row">
-          <div class="col-sm-4">
-            <h3>Column 1</h3>
-            <p>Lorem ipsum dolor..</p>
+        <div className="row">
+          <div className="col-sm-1"></div>
+
+          <div className="col-sm-10">
+            <h2>
+              Search for your Neta!
+                        </h2>
+            <Netas />
+
+            <hr style={{ margin: '3em' }} />
+
           </div>
-          <div class="col-sm-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor..</p>
-          </div>
-          <div class="col-sm-4">
-            <h3>Column 3</h3>
-            <p>Lorem ipsum dolor..</p>
-          </div>
+          <div className="col-sm-1"></div>
         </div>
       </div>
     </div>
