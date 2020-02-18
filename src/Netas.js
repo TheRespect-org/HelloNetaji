@@ -70,19 +70,19 @@ export default class Netas extends React.Component {
                                     <div className="col-md-6">
                                         <ul>
                                             {neta.Mobile && <li>
-                                                <a href={`tel:${neta.Mobile}`}>{neta.Mobile}</a>
+                                                <small>phone</small> <a href={`tel:${neta.Mobile}`}>{neta.Mobile}</a>
                                             </li>}
 
                                             {neta.Email && <li>
-                                                <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
+                                                <small>email</small> <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
                                             </li>}
 
                                             {neta.Twitter && <li>
-                                                {neta.Twitter}
+                                                <small>social</small> {neta.Twitter}
                                             </li>}
 
                                             {neta.Address && <li>
-                                                {neta.Address}
+                                                <small>address</small> {neta.Address}
                                             </li>}
                                         </ul>
 
