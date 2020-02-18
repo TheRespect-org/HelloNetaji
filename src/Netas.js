@@ -51,7 +51,7 @@ export default class Netas extends React.Component {
                             <input type="text" onInput={(e) => {
                                 this.filterNetas(e.target.value);
                             }
-                            } className="form-control" placeholder="search for your neta here" name="search" />
+                            } className="form-control" placeholder="search for your MLA from Maharashtra here" name="search" />
                             <div className="input-group-btn">
                                 <button className="btn btn-default" type="submit"><i className="fas fa-search"></i></button>
                             </div>
