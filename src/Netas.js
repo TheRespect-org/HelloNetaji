@@ -9,8 +9,7 @@ export default class Netas extends React.Component {
         try {
 
             const response = await axios.get(`//hellonetaji.therespect.org/api/politicians`);
-            debugger
-
+           
             if (response.status === 200) {
                 /* Map the response to IShariahStocks */
                 allNetas = netas = response.data;
@@ -28,9 +27,10 @@ export default class Netas extends React.Component {
     }
 
     filterNetas(value) {
+        debugger
         value = value.toUpperCase();
         let filteredNetas = allNetas.filter((neta) => {
-            return neta.ACName.includes(value);
+            return neta.ACName.toUpperCase().includes(value);
         });
         netas = filteredNetas;
         this.setState({ netas: filteredNetas });
@@ -70,19 +70,19 @@ export default class Netas extends React.Component {
                                     <div className="col-md-6">
                                         <ul>
                                             {neta.Mobile && <li>
-                                                <small>phone</small> <a href={`tel:${neta.Mobile}`}>{neta.Mobile}</a>
+                                                <small>phone:</small> <a href={`tel:${neta.Mobile}`}>{neta.Mobile}</a>
                                             </li>}
 
                                             {neta.Email && <li>
-                                                <small>email</small> <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
+                                                <small>email:</small> <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
                                             </li>}
 
                                             {neta.Twitter && <li>
-                                                <small>social</small> {neta.Twitter}
+                                                <small>social:</small> {neta.Twitter}
                                             </li>}
 
                                             {neta.Address && <li>
-                                                <small>address</small> {neta.Address}
+                                                <small>address:</small> {neta.Address}
                                             </li>}
                                         </ul>
 
