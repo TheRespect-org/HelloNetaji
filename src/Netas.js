@@ -7,13 +7,13 @@ export default class Netas extends React.Component {
 
     async getNetas() {
         try {
-            debugger
 
             const response = await axios.get(`//hellonetaji.therespect.org/api/politicians`);
+            debugger
 
             if (response.status === 200) {
                 /* Map the response to IShariahStocks */
-                netas = response.data;
+                allNetas = netas = response.data;
                 this.setState({ netas });
             }
 
@@ -32,6 +32,7 @@ export default class Netas extends React.Component {
         let filteredNetas = allNetas.filter((neta) => {
             return neta.ACName.includes(value);
         });
+        netas = filteredNetas;
         this.setState({ netas: filteredNetas });
     }
 
@@ -52,29 +53,25 @@ export default class Netas extends React.Component {
                             </div>
                         </div>
 
-                        {this.netas && this.netas.map((stock, i) =>
+                        {netas && netas.map((neta, i) =>
 
-                            <div key={`${stock.symbol}-${stock.exchange}`} className='mt-3'>
+                            <div key={`${neta._id}-${neta.ACName}`} className='mt-3'>
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <div data-toggle="collapse" data-target={`#collapse${stock.symbol}-${stock.exchange}`} aria-expanded="false" aria-controls={`#collapse${stock.symbol}-${stock.exchange}`}>
-                                            <label className="font-weight-bold">
-                                                {this.getStockDirection(stock)} {stock.symbol}
-                                            </label>
-                                            <small> <sup className='text-muted'>
-                                                {stock.exchange}
+                                        <div data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>
+                                        {neta.No} <small> <sup className='text-muted'>
+                                                {neta.ACName}
                                             </sup>
                                             </small>
 
-                                            <small className='ml-3'>₹{stock.lastTradePrice} ({Math.sign(stock.change) >= 0 ? +stock.change : stock.change} / {stock.percentChange}% )</small>
-                                            <button className='ml-3 btn btn-primary btn-sm' id={`details-btn-${stock.symbol}-${stock.exchange}`}> details </button>
+                                            <small className='ml-3'>{neta['Sitting MLAs']} )</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="stock-details collapse mt-3" id={`collapse${stock.symbol}-${stock.exchange}`}>
+                                <div className="stock-details collapse mt-3" id={`collapse${neta._id}-${neta.ACName}`}>
                                     <div className="row">
                                         <div className="col-md-12 border">
-                                            <div id={`chart${stock.symbol}-${stock.exchange}`}></div>
+                                            <div id={`chart${neta._id}-${neta.ACName}`}></div>
                                         </div>
                                     </div>
                                 </div>
