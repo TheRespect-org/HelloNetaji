@@ -59,12 +59,16 @@ export default class Netas extends React.Component {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>
-                                        {neta.No} <small> <sup className='text-muted'>
+                                            {neta.No} <small> <sup className='text-muted'>
                                                 {neta.ACName}
                                             </sup>
                                             </small>
 
-                                            <small className='ml-3'>{neta['Sitting MLAs']}</small>
+                                            <small className='ml-3'>{neta['Sitting MLAs']} (${neta.Party})</small>
+                                            <a href={`tel:${neta.Mobile}`}>Mobile</a>
+                                            <a href={`mailto:${neta.Email}`}>Email</a>
+                                            {neta.Twitter}
+                                            {neta.Address}
                                         </div>
                                     </div>
                                 </div>
