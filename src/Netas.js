@@ -9,7 +9,7 @@ export default class Netas extends React.Component {
         try {
 
             const response = await axios.get(`//hellonetaji.therespect.org/api/politicians`);
-           
+
             if (response.status === 200) {
                 /* Map the response to IShariahStocks */
                 allNetas = netas = response.data;
@@ -27,10 +27,14 @@ export default class Netas extends React.Component {
     }
 
     filterNetas(value) {
-        debugger
         value = value.toUpperCase();
         let filteredNetas = allNetas.filter((neta) => {
-            return neta.ACName.toUpperCase().includes(value);
+            return neta.ACName.toUpperCase().includes(value) ||
+                neta.Party.toUpperCase().includes(value) ||
+                neta.Mobile.toString().toUpperCase().includes(value) ||
+                neta.Email.toUpperCase().includes(value) ||
+                neta.Twitter.toUpperCase().includes(value) ||
+                neta.Address.toUpperCase().includes(value);
         });
         netas = filteredNetas;
         this.setState({ netas: filteredNetas });
