@@ -64,7 +64,7 @@ export default class Netas extends React.Component {
                                             </sup>
                                             </small>
 
-                                            <small className='ml-3'>{neta['Sitting MLAs']} )</small>
+                                            <small className='ml-3'>{neta['Sitting MLAs']}</small>
                                         </div>
                                     </div>
                                 </div>
