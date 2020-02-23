@@ -71,11 +71,6 @@ export default class Netas extends React.Component {
                                             </small>
 
                                             <label className='ml-3'> {neta['Sitting MLAs']} <small>({neta.Party}) from {neta.ACName}</small> </label>
-
-                                            {/* <br />
-                                            <button className="btn btn-primary" data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>file petition</button> */}
-
-
                                         </div>
                                     </div>
                                     <div className="col-md-6">
@@ -99,10 +94,6 @@ export default class Netas extends React.Component {
                                         </ul>
 
                                     </div>
-                                </div>
-
-                                <div className="collapse mt-3" id={`collapse${neta._id}-${neta.ACName}`}>
-                                    <Petition politician={neta} />
                                 </div>
                             </div>
 

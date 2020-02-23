@@ -1,14 +1,29 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class Petition extends React.Component {
     filePetition(e) {
         e.preventDefault();
-        console.log(e.target.name.value);
-        // console.log(e.target.email.value);
-        // console.log(e.target.pincode.value);
-        // console.log(e.target.phone.value);
-        // debugger
+
+        axios.post('http://hellonetaji.therespect.org/api/petitions', {
+            Name: e.target.Name.value,
+            Email: e.target.Email.value,
+            ActionArea: e.target.ActionArea.value,
+            Sections: e.target.Sections.value,
+            CaseConsent: e.target.CaseConsent.value,
+            Phone: e.target.Phone.value,
+            Address: e.target.Address.value,
+            Action: e.target.elements[3].value,
+            PinCode: e.target.PinCode.value
+        })
+            .then(res => {
+                console.log(res);
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log('An error occured')
+            })
 
         let mailToLink = encodeURI(
             `mailto:chiefminister@maharashtra.gov.in,cm@maharashtra.gov.in?cc=adityathackeray@me.com,bbtsangamner@gmail.com,pawars@sansad.nic.in,sec_socjustice@maharashtra.gov.in
@@ -19,63 +34,89 @@ We the people of Maharashtra have deep faith in the MVA government. We hope that
 We sincerely request you to kindly pass an anti-CAA resolution in the Maharashtra assembly. Also, do stop the process of NPR as NPR is the base of NRC.\n
         
 Thanks and regards,\n        
-${e.target.name.value}`);
+${e.target.Name.value}`);
 
         window.location.href = mailToLink;
     }
 
     render() {
-        debugger
-        console.log('Neta', this.params);
-
         return (
-            <div >
-                <p>Enter your name to file a petition to Maharashtra's MVA government!</p>
+            <div>
+                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here </button> to file a petition to Maharashtra's MVA government!</p>
 
-                <Form onSubmit={this.filePetition}>
+                <Form id="demo" className="collapse" onSubmit={this.filePetition}>
+
                     <div className="row">
-                        {/* <div className="col-md-6"> */}
-                        <div className="col-md-4">
-                            <Form.Label>Enter your name</Form.Label>
+                        <div className="col-md-4"><Form.Group>
+                            <Form.Control name="Name" type="text" placeholder="Name*" required />
+                        </Form.Group>
                         </div>
-
+                        <div className="col-md-4"> <Form.Group>
+                            <Form.Control name="Email" type="email" placeholder="Email*" required />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                                </Form.Text>
+                        </Form.Group>
+                        </div>
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="name" type="text" placeholder="name*" required />
+                                <Form.Control name="Phone" type="text" placeholder="Phone" required />
                             </Form.Group>
                         </div>
-
-                        <div className="col-md-4">
-                            <Button variant="primary" type="submit"> Submit petition </Button>
-                        </div>
-
-
-                        {/* <Form.Group>
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control name="email" type="email" placeholder="email*" required />
-                                <Form.Text className="text-muted">
-                                    We'll never share your email with anyone else.
-    </Form.Text>
-                            </Form.Group> */}
-                        {/* </div> */}
-                        {/* <div className="col-md-6">
-                            <Form.Group>
-                                <Form.Label>Pin code</Form.Label>
-                                <Form.Control name="pincode" type="text" placeholder="pin code" required />
-                            </Form.Group>
-
-                            <Form.Group>
-                                <Form.Label>Phone</Form.Label>
-                                <Form.Control name="phone" type="text" placeholder="Phone" required />
-                            </Form.Group>
-
-                        </div> */}
-
                     </div>
+
+                    <div className="row">
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Text className="text-muted">
+                                    What have you went through?
+                                </Form.Text>
+                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`Detained`} label={`Detained`} value="Detained" />
+                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`NoticeIssued`} label={`Notice Issued`} value="NoticeIssued" />
+                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`FIR`} label={`FIR`} value="FIR" />
+                            </Form.Group>
+                        </div>
+
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Text className="text-muted">
+                                    Will you consent to a collective suit filed on behalf of you & others in a Court of law?
+                                </Form.Text>
+                                <Form.Check name="CaseConsent" className="d-inline" type='radio' id={`Yes`} label={`Yes`} value="Yes" />
+                                <Form.Check name="CaseConsent" className="d-inline" type='radio' id={`No`} label={`No`} value="No" />
+                            </Form.Group>
+                        </div>
+
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Control name="ActionArea" type="text" placeholder="Police Station / Area where this action was taken on you" required />
+                            </Form.Group>
+                        </div>
+                    </div>
+
+                    <div className="row">
+
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Control name="Sections" type="text" placeholder="Specify sections slapped on you" required />
+                            </Form.Group>
+                        </div>
+
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Control name="PinCode" type="text" placeholder="Pin code" />
+                            </Form.Group>
+                        </div>
+
+                        <div className="col-md-4">
+                            <Form.Group>
+                                <Form.Control name="Address" type="text" placeholder="Address" />
+                            </Form.Group>
+                        </div>
+                    </div>
+
+                    <Button variant="primary" type="submit"> Submit petition </Button>
                 </Form>
-
-
-
             </div>);
     }
 }
