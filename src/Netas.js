@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Petition from './Petition';
 
 let netas = [], allNetas = [];
 
@@ -47,11 +48,12 @@ export default class Netas extends React.Component {
 
                 <div className="col-sm-12">
                     <div>
+
                         <div className="input-group">
                             <input type="text" onInput={(e) => {
                                 this.filterNetas(e.target.value);
                             }
-                            } className="form-control" placeholder="search for your MLA from Maharashtra here" name="search" />
+                            } className="form-control" placeholder="search for your MLA from Maharashtra here (contact us on social media for data addition for other states)" name="search" />
                             <div className="input-group-btn">
                                 <button className="btn btn-default" type="submit"><i className="fas fa-search"></i></button>
                             </div>
@@ -62,13 +64,18 @@ export default class Netas extends React.Component {
                             <div key={`${neta._id}-${neta.ACName}`} className='mt-3'>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <div data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>
+                                        <div>
                                             <small> <sup className='text-muted'>
                                                 {neta.No}
                                             </sup>
                                             </small>
 
                                             <label className='ml-3'> {neta['Sitting MLAs']} <small>({neta.Party}) from {neta.ACName}</small> </label>
+
+                                            {/* <br />
+                                            <button className="btn btn-primary" data-toggle="collapse" data-target={`#collapse${neta._id}-${neta.ACName}`} aria-expanded="false" aria-controls={`#collapse${neta._id}-${neta.ACName}`}>file petition</button> */}
+
+
                                         </div>
                                     </div>
                                     <div className="col-md-6">
@@ -78,7 +85,8 @@ export default class Netas extends React.Component {
                                             </li>}
 
                                             {neta.Email && <li>
-                                                <small>email:</small> <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
+                                                <small>email:</small>
+                                                <a href={`mailto:${neta.Email}`}>{neta.Email}</a>
                                             </li>}
 
                                             {neta.Twitter && <li>
@@ -92,12 +100,9 @@ export default class Netas extends React.Component {
 
                                     </div>
                                 </div>
-                                <div className="stock-details collapse mt-3" id={`collapse${neta._id}-${neta.ACName}`}>
-                                    <div className="row">
-                                        <div className="col-md-12 border">
-                                            <div id={`chart${neta._id}-${neta.ACName}`}></div>
-                                        </div>
-                                    </div>
+
+                                <div className="collapse mt-3" id={`collapse${neta._id}-${neta.ACName}`}>
+                                    <Petition politician={neta} />
                                 </div>
                             </div>
 
