@@ -69,7 +69,7 @@ ${e.target.Name.value}`);
                         <div className="col-md-4">
                             <Form.Group>
                                 <Form.Text className="text-muted">
-                                    What have you went through?
+                                    Has Police taken any of the following action on you?
                                 </Form.Text>
                                 <Form.Check name="Action" className="d-inline" type='checkbox' id={`Detained`} label={`Detained`} value="Detained" />
                                 <Form.Check name="Action" className="d-inline" type='checkbox' id={`NoticeIssued`} label={`Notice Issued`} value="NoticeIssued" />
