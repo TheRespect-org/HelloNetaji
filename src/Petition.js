@@ -42,7 +42,7 @@ ${e.target.Name.value}`);
     render() {
         return (
             <div>
-                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here to submit your input</button> </p>
+                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here to submit your input to the Maharashtras government</button> </p>
 
                 <Form id="demo" className="collapse" onSubmit={this.filePetition}>
                     <sub>*This will generate an automated email. Also, if you have been detained, issued FIR/notice by Mumbai Police during AntiCAA protests from 19th Dec 2019 till date, please submit those details too.</sub>
