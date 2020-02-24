@@ -42,10 +42,10 @@ ${e.target.Name.value}`);
     render() {
         return (
             <div>
-                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here </button> to file a petition to Maharashtra's MVA government!</p>
+                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here to submit your input</button> </p>
 
                 <Form id="demo" className="collapse" onSubmit={this.filePetition}>
-
+                    <sub>*This will generate an automated email. Also, if you have been detained, issued FIR/notice by Mumbai Police during AntiCAA protests from 19th Dec 2019 till date, please submit those details too.</sub>
                     <div className="row">
                         <div className="col-md-4"><Form.Group>
                             <Form.Control name="Name" type="text" placeholder="Name*" required />
@@ -60,7 +60,7 @@ ${e.target.Name.value}`);
                         </div>
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="Phone" type="text" placeholder="Phone" required />
+                                <Form.Control name="Phone" type="text" placeholder="Phone*" required />
                             </Form.Group>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ ${e.target.Name.value}`);
 
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="ActionArea" type="text" placeholder="Police Station / Area where this action was taken on you" required />
+                                <Form.Control name="ActionArea" type="text" placeholder="Police Station / Area where this action was taken on you (optional)" required />
                             </Form.Group>
                         </div>
                     </div>
@@ -98,24 +98,25 @@ ${e.target.Name.value}`);
 
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="Sections" type="text" placeholder="Specify sections slapped on you" required />
+                                <Form.Control name="Sections" type="text" placeholder="Specify sections slapped on you (optional)" required />
                             </Form.Group>
                         </div>
 
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="PinCode" type="text" placeholder="Pin code" />
+                                <Form.Control name="PinCode" type="text" placeholder="Pin code (optional)" />
                             </Form.Group>
                         </div>
 
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="Address" type="text" placeholder="Address" />
+                                <Form.Control name="Address" type="text" placeholder="Address (optional)" />
                             </Form.Group>
                         </div>
                     </div>
 
-                    <Button variant="primary" type="submit"> Submit petition </Button>
+                    <Button variant="primary" type="submit"> Send email </Button>
+
                 </Form>
             </div>);
     }
