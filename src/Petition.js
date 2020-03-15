@@ -2,20 +2,46 @@ import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 
+let petitionsCount = 0;
 export default class Petition extends React.Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            petitionsCount: 0
+        }
+    }
+
+    async getPetitionsCount() {
+        try {
+
+            const response = await axios.get(`//hellonetaji.therespect.org/api/petitions/count`);
+
+            debugger
+            if (response.status === 200) {
+                /* Map the response to IShariahStocks */
+                
+                petitionsCount = response.data.petitionsCount;
+                this.setState({ petitionsCount });
+            }
+
+        } catch (ex) {
+            console.log(ex);
+            this.setState({ error: 'An error occured' });
+        }
+    }
+
+    componentWillMount() {
+        this.getPetitionsCount();
+    }
+
     filePetition(e) {
         e.preventDefault();
 
         axios.post('http://hellonetaji.therespect.org/api/petitions', {
             Name: e.target.Name.value,
             Email: e.target.Email.value,
-            ActionArea: e.target.ActionArea.value,
-            Sections: e.target.Sections.value,
-            CaseConsent: e.target.CaseConsent.value,
-            Phone: e.target.Phone.value,
-            Address: e.target.Address.value,
-            Action: e.target.elements[3].value,
-            PinCode: e.target.PinCode.value
+            Phone: e.target.Phone.value
         })
             .then(res => {
                 console.log(res);
@@ -42,10 +68,12 @@ ${e.target.Name.value}`);
     render() {
         return (
             <div>
-                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here to submit your input to the Maharashtra government</button> </p>
+
+                {this.state.petitionsCount} petitions so far!
+                <p data-toggle="collapse" data-target="#demo"><button class="btn btn-primary"> Click here to submit your petition to the Maharashtra government</button> </p>
 
                 <Form id="demo" className="collapse" onSubmit={this.filePetition}>
-                    <sub>*This will generate an automated email. Also, if you have been detained, issued FIR/notice by Mumbai Police during AntiCAA protests from 19th Dec 2019 till date, please submit those details too.</sub>
+                    <sub>*This will generate an automated email.</sub>
                     <div className="row">
                         <div className="col-md-4"><Form.Group>
                             <Form.Control name="Name" type="text" placeholder="Name*" required />
@@ -60,57 +88,7 @@ ${e.target.Name.value}`);
                         </div>
                         <div className="col-md-4">
                             <Form.Group>
-                                <Form.Control name="Phone" type="text" placeholder="Phone*" required />
-                            </Form.Group>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Text className="text-muted">
-                                    Has Police taken any of the following action on you?
-                                </Form.Text>
-                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`Detained`} label={`Detained`} value="Detained" />
-                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`NoticeIssued`} label={`Notice Issued`} value="NoticeIssued" />
-                                <Form.Check name="Action" className="d-inline" type='checkbox' id={`FIR`} label={`FIR`} value="FIR" />
-                            </Form.Group>
-                        </div>
-
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Text className="text-muted">
-                                    Will you consent to a collective suit filed on behalf of you & others in a Court of law?
-                                </Form.Text>
-                                <Form.Check name="CaseConsent" className="d-inline" type='radio' id={`Yes`} label={`Yes`} value="Yes" />
-                                <Form.Check name="CaseConsent" className="d-inline" type='radio' id={`No`} label={`No`} value="No" />
-                            </Form.Group>
-                        </div>
-
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Control name="ActionArea" type="text" placeholder="Police Station / Area where this action was taken on you (optional)" required />
-                            </Form.Group>
-                        </div>
-                    </div>
-
-                    <div className="row">
-
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Control name="Sections" type="text" placeholder="Specify sections slapped on you (optional)" required />
-                            </Form.Group>
-                        </div>
-
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Control name="PinCode" type="text" placeholder="Pin code (optional)" />
-                            </Form.Group>
-                        </div>
-
-                        <div className="col-md-4">
-                            <Form.Group>
-                                <Form.Control name="Address" type="text" placeholder="Address (optional)" />
+                                <Form.Control name="Phone" type="text" placeholder="Phone (optional)" />
                             </Form.Group>
                         </div>
                     </div>

@@ -17,7 +17,7 @@ function App() {
         <img style={{"width" : "10%"}} src="logos/logo.jpeg" />
         <p><a href="https://en.wikipedia.org/wiki/National_Register_of_Citizens"> NPR</a> 2020 se NRC banega <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fhellonetaji.therespect.org%2F&text=Dear%20Netaji!%20Please%20stop%20NPR%20in%20Maharashtra%20Assembly.%20NPR%20is%20the%20first%20step%20of%20NRC%20which%20will%20mark%20people%20as%20doubtful%20citizens!%20%23HelloNetaji%20%23noNPR%20%23noNRC%20Find%20your%20Neta%20at%20">#NoNPR</a></p>
 
-        {/* <Petition /> */}
+        <Petition />
       </div>
 
       <div className="container">
