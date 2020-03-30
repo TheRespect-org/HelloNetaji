@@ -14,8 +14,19 @@ function App() {
         <label className="float-right" >v1.0.2</label>
       </div>
       <div className="jumbotron text-center">
-        <img style={{"width" : "10%"}} src="logos/logo.jpeg" />
-        
+
+        <p>
+          NPR/ Census process has been put on hold on the wake of the Covid-19 pandemic. While that fight is still on, we are now focusing on the current needs and rights of the masses affected badly due to the current lockdown. Many civil society organisations and individuals are working to provide relief to those who need it (without agenda).
+</p>
+        <p>
+          We can't do this alone. Reach out to your elected representatives and ask them for help in areas where families are in distress. Please note this is not the time to criticise alone, we have to work with them but also hold them accountable
+</p>
+
+        <p>
+          Find your Netaji (MLA) here
+  </p>
+
+
       </div>
 
       <div className="container">
